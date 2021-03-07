@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewPostScreen extends StatefulWidget {
+  static const routeName = "newPost";
   @override
   _NewPostScreenState createState() => _NewPostScreenState();
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class ListScreen extends StatefulWidget {
+  final routeName = "/";
   @override
   _ListScreenState createState() => _ListScreenState();
 }
@@ -13,6 +14,11 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Wasteagram')),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+          // navigate to the new post screen
+        },),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("posts").snapshots(),
         builder: (content, snapshot) {
@@ -22,8 +28,8 @@ class _ListScreenState extends State<ListScreen> {
                 itemBuilder: (context, index) {
                   var post = snapshot.data.documents[index];
                   return ListTile(
-                    title: Text(post['date'].toString()), 
-                    trailing: Text(post['num_wasted'].toString()));
+                      title: Text(formatDate(post['date'])),
+                      trailing: Text(post['num_wasted'].toString()));
                 });
           } else {
             return Center(
@@ -34,4 +40,10 @@ class _ListScreenState extends State<ListScreen> {
       ),
     );
   }
+}
+
+String formatDate(Timestamp timestamp) {
+  var date = timestamp.toDate();
+  String formattedDate = DateFormat('EEEE, MMMM dd, yyyy').format(date);
+  return formattedDate; 
 }
