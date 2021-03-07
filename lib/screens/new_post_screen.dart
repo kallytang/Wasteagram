@@ -10,7 +10,9 @@ class NewPostScreen extends StatefulWidget {
 class _NewPostScreenState extends State<NewPostScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(title: Text("Create Post")),
+
+    );
   }
 }
