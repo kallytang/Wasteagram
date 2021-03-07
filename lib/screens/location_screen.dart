@@ -17,7 +17,7 @@ class _ShareLocationScreenState extends State<ShareLocationScreen> {
 
   void retrieveLocation() async {
     var locationService = Location();
-    locationData = await locationService.getLocation(); 
+    locationData = await locationService.getLocation();
     setState(() {});
   }
 
@@ -32,7 +32,8 @@ class _ShareLocationScreenState extends State<ShareLocationScreen> {
           RaisedButton(
             child: Text("Share"),
             onPressed: () {
-              Share.share("I'm at ${locationData.latitude}, ${locationData.latitude}")
+              Share.share(
+                  "I'm at ${locationData.latitude}, ${locationData.latitude}");
             },
           )
         ],
