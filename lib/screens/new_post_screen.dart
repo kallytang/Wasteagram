@@ -63,10 +63,14 @@ class _NewPostScreenState extends State<NewPostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    getGalleryImage(); 
     return screenManager(formKey, context);
   }
 
   Widget screenManager(GlobalKey<FormState> formKey, BuildContext context) {
+    if(imageMissing == true){
+      getGalleryImage(); 
+    }
     if (isLoading) {
       return imageLoadingCircle();
     } else {
@@ -107,11 +111,13 @@ class _NewPostScreenState extends State<NewPostScreen> {
   Widget getGalleryButton() {
     return Column(children: [
       Center(
-          child: ElevatedButton(
+          child: Semantics(
+            onTapHint: "Get image from gallery for posting",
+            child: ElevatedButton(
               onPressed: () {
                 getGalleryImage();
               },
-              child: Text("Get Photo From Gallery")))
+              child: Text("Get Photo From Gallery"))))
     ]);
   }
 
@@ -128,6 +134,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
 
   Widget imageManager() {
     if (imageFile == null) {
+      getGalleryImage();
       if (imageMissing == true) {
         return Column(
           children: [
@@ -199,7 +206,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
         context.findAncestorStateOfType<AppState>();
     return Semantics(
       enabled: true,
-      onTapHint: "Make Post",
+      onTapHint: "Make post and return to main screen",
       child:GestureDetector(
         onTap: () async {
           if (imageFile != null) {
