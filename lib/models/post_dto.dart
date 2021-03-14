@@ -1,9 +1,18 @@
-class Post {
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class PostDTO {
   String imgUrl;
-  String id; 
+  String id;
   int numWasted;
-  DateTime date;
+  Timestamp date;
   double latitude;
   double longitude;
   // GeoPoint location;
+  PostDTO(
+      {this.id,
+      this.imgUrl,
+      this.numWasted,
+      this.date,
+      this.latitude,
+      this.longitude});
 }

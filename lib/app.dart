@@ -10,10 +10,10 @@ class App extends StatefulWidget {
     DetailScreen.routeName: (context) => DetailScreen()
   };
   @override
-  _AppState createState() => _AppState();
+  AppState createState() => AppState();
 }
 
-class _AppState extends State<App> {
+class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
