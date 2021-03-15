@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasteagram/screens/camera_screen.dart';
 import 'package:wasteagram/screens/new_post_screen.dart';
 import 'screens/list_screen.dart';
 import 'screens/detail_screen.dart';
@@ -7,7 +8,8 @@ class App extends StatefulWidget {
   static final routes = {
     ListScreen.routeName: (context) => ListScreen(),
     NewPostScreen.routeName: (context) => NewPostScreen(),
-    DetailScreen.routeName: (context) => DetailScreen()
+    DetailScreen.routeName: (context) => DetailScreen(),
+    CameraScreen.routeName: (context) => CameraScreen()
   };
   @override
   AppState createState() => AppState();

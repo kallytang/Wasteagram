@@ -16,7 +16,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
    
-    final PostDTO post = ModalRoute.of(context).settings.arguments;
+    final FoodWastePostDTO post = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(title: Text("Wasteagram")),
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -27,7 +27,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ]));
   }
 
-  Widget dateTitle(PostDTO post) {
+  Widget dateTitle(FoodWastePostDTO post) {
     return Padding(
       child: Text(
         formatDate(post.date),
@@ -37,21 +37,21 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Widget imageSection(PostDTO post) {
+  Widget imageSection(FoodWastePostDTO post) {
     return Padding(
       child: imageHolder(post),
       padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
     );
   }
 
-  Widget numWastedTitle(PostDTO post) {
+  Widget numWastedTitle(FoodWastePostDTO post) {
     return Padding(
       child: Text("${post.numWasted} items", style: TextStyle(fontSize: 30)),
       padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
     );
   }
 
-  Widget locationInfoSection(PostDTO post) {
+  Widget locationInfoSection(FoodWastePostDTO post) {
     return Container(
         alignment: Alignment.bottomCenter,
         child: Padding(
@@ -68,7 +68,7 @@ String formatDate(Timestamp timestamp) {
   return formattedDate;
 }
 
-Widget imageHolder(PostDTO post) {
+Widget imageHolder(FoodWastePostDTO post) {
   return Container(
     height: 260,
     decoration: BoxDecoration(

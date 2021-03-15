@@ -36,16 +36,16 @@ class ListScreenState extends State<ListScreen> {
       appBar: AppBar(title: Text('Wasteagram, Total Wasted: ${totalWasted}')),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Semantics(
-        button: true,
-        enabled: true,
-        onTapHint: 'Create a Post',
-        child:FloatingActionButton(
-        child: Icon(Icons.camera_alt),
-        onPressed: () {
-          pushNewPost(context);
-          // navigate to the new post screen
-        },
-      )),
+          button: true,
+          enabled: true,
+          onTapHint: 'Pick an ImageCreate a Post',
+          child: FloatingActionButton(
+            child: Icon(Icons.image),
+            onPressed: () {
+              pushNewPost(context);
+              // navigate to the new post screen
+            },
+          )),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("posts").snapshots(),
         builder: (content, snapshot) {
@@ -55,7 +55,7 @@ class ListScreenState extends State<ListScreen> {
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
                   var postData = snapshot.data.documents[index];
-                  var post = PostDTO(
+                  var post = FoodWastePostDTO(
                       id: postData.documentID,
                       imgUrl: postData['image_url'],
                       numWasted: postData['num_wasted'],
@@ -63,13 +63,13 @@ class ListScreenState extends State<ListScreen> {
                       latitude: postData['latitude'],
                       longitude: postData['longitude']);
                   return Semantics(
-                    onTapHint: "Tap to see List information",
-                    child:ListTile(
-                      title: Text(formatDate(postData['date'])),
-                      trailing: Text(postData['num_wasted'].toString()),
-                      onTap: () {
-                        sendPostToDetailScreen(post, context);
-                      }));
+                      onTapHint: "Tap to see List information",
+                      child: ListTile(
+                          title: Text(formatDate(postData['date'])),
+                          trailing: Text(postData['num_wasted'].toString()),
+                          onTap: () {
+                            sendPostToDetailScreen(post, context);
+                          }));
                 });
           } else {
             return Center(
@@ -96,6 +96,4 @@ String formatDate(Timestamp timestamp) {
   return formattedDate;
 }
 
-void sendPostToDetailScreen(PostDTO post, BuildContext context) async {
-  await Navigator.pushNamed(context, DetailScreen.routeName, arguments: post);
-}
+

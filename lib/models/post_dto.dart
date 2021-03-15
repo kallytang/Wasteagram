@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PostDTO {
+class FoodWastePostDTO {
   String imgUrl;
   String id;
   int numWasted;
@@ -8,7 +8,7 @@ class PostDTO {
   double latitude;
   double longitude;
   // GeoPoint location;
-  PostDTO(
+  FoodWastePostDTO(
       {this.id,
       this.imgUrl,
       this.numWasted,

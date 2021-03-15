@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wasteagram/app.dart';
 import 'package:intl/intl.dart';
-import 'package:wasteagram/models/post.dart';
+import 'package:wasteagram/models/food_waste_post.dart';
 import 'package:wasteagram/models/post_dto.dart';
 
 void main() {
@@ -24,7 +24,7 @@ void main() {
     const latitude = 1.0;
     const longitude = 1.0;
 
-    final food_post = Post(
+    final food_post = FoodWastePost(
         date: date,
         imgUrl: url,
         numWasted: numWasted,
@@ -51,7 +51,7 @@ void main() {
       'latitude': latitude,
       'longitude': longitude
     };
-    final food_post = Post(
+    final food_post = FoodWastePost(
         date: date,
         imgUrl: url,
         numWasted: numWasted,
